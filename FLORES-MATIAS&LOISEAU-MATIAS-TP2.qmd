@@ -1,0 +1,338 @@
+---
+title: "Trabajo Practico N°1"
+author: "Ing. Flores, Matias & Ing. Loiseau, Matias"
+format: pdf
+editor: visual
+---
+
+```{r, message=FALSE, warning=FALSE}
+library(rstudioapi)
+library(readxl)
+library(ggplot2)
+library(tidyverse)
+library(GGally)
+library(ggthemes)
+library(effectsize)
+library(car)
+library("nortest")
+
+```
+
+# Ejercicio N°1
+
+## Punto 1
+
+### Carga del Data Set
+
+```{r}
+setwd(dirname(getActiveDocumentContext()$path))
+```
+
+```{r, message=FALSE, warning=FALSE}
+MedidasCorporales <- read_excel("MedidasCorporales.xlsx")
+attach(MedidasCorporales)
+```
+
+Ponemos esto para saber cuantos registros y variables hay. Y si son todas numericas
+
+```{r}
+str(MedidasCorporales)
+```
+
+Verificamos que no haya nulos en el dataset
+
+```{r}
+which(is.na(MedidasCorporales))
+
+```
+
+Scatterplot
+
+```{r}
+ggplot(data = MedidasCorporales, aes(x = Peso, y = Altura)) +
+  geom_point(col = "violet") +
+  xlab("Altura del padre (en cm)") +
+  ylab("Altura del hijo (en cm)")
+```
+
+```{r}
+cor(Peso, Altura)
+```
+
+Usamos y chirimbolo x. Donde predecimos el peso en base a la altura. Esto responde como influye la altura en el peso. En el ejemplo de la profesora, es como influye la altura del padre en la del hijo.
+
+```{r}
+reg_lineal <- lm(formula = Peso ~ Altura, 
+                  data = MedidasCorporales)
+reg_lineal
+```
+
+```{r}
+reg_lineal$coefficients
+```
+
+```{r}
+ggplot(data = MedidasCorporales, aes(x = Altura, y = Peso)) +
+  geom_point(col = "pink") +
+  geom_abline(slope = 1.018, intercept = -105.011, color = "purple") +
+  xlab("Altura del padre (en cm)") +
+  ylab("Altura del hijo (en cm)")
+```
+
+```{r}
+summary(reg_lineal)
+```
+
+Los coeficientes de regresion son muy significativos.
+
+```{r}
+residuos <- data.frame(Error = reg_lineal$residuals)
+
+ggplot(data = residuos, aes(x = Error)) +
+  geom_histogram(fill = "pink", col = "purple") +
+  ylab("")
+
+ggqqplot(data = residuos, x = "Error", color = "violet", pch = 16)
+
+shapiro.test(residuos$Error)
+```
+
+No se aprecia normalidad en los residuos.
+
+## Punto 3
+
+```{r}
+n = 507
+set.seed(1234)
+```
+
+```{r}
+library(lattice)
+library(caret)
+
+```
+
+```{r}
+muestras <- 1:n %>% 
+  createDataPartition(p=0.80, list=FALSE)
+```
+
+```{r}
+
+entrenamiento_tp <- MedidasCorporales[muestras,]
+prueba_tp <- MedidasCorporales[-muestras,]
+```
+
+```{r}
+entrenamiento_tp
+```
+
+```{r}
+reg_multiple = lm(formula=Peso ~ ., data = entrenamiento_tp)
+```
+
+```{r}
+reg_multiple
+```
+
+```{r}
+confint(reg_multiple , level=0.95)
+```
+
+```{r}
+reg_multiple_nueva = lm(formula=Peso ~ `Profundidad de pecho` + `Diámetro de rodilla` + `Contorno de pecho` + `Contorno de cintura`+
+                          `Contorno de cadera` + `Contorno de muslo` + `Contorno de antebrazo` + `Contorno de rodilla` + 
+                          `Contorno de pantorrilla` + Edad + Altura, data = entrenamiento_tp)
+```
+
+```{r}
+summary(reg_multiple)
+```
+
+```{r}
+options(width = 80) # (mejora visual de la salida)
+
+predicciones1 <- predict(reg_multiple, prueba_tp, type = "response")
+
+predicciones1
+```
+
+```{r}
+summary(reg_multiple_nueva)
+```
+
+```{r}
+options(width = 80) # (mejora visual de la salida)
+
+predicciones2 <- predict(reg_multiple_nueva, prueba_tp, type = "response")
+
+predicciones2
+```
+
+```{r}
+prueba_tp
+```
+
+```{r}
+data1 <- data.frame(pred = predicciones1, actual = prueba_tp$Peso)
+data1
+```
+
+```{r}
+data2 <- data.frame(pred = predicciones2, actual = prueba_tp$Peso)
+data2
+```
+
+```{r}
+MSE_Modelo1 = mean((data1$actual - data1$pred)^2)
+MSE_Modelo2 = mean((data2$actual - data2$pred)^2)
+MSE_Modelo1
+MSE_Modelo2
+```
+
+# Ejercicio N°2
+
+```{r, message=FALSE, warning=FALSE}
+Dolor <- read_excel("Dolor.xlsx")
+attach(Dolor)
+```
+
+```{r, message=FALSE, warning=FALSE}
+Dolor_Nuevo <- drop_na(Dolor)
+attach(Dolor_Nuevo)
+```
+
+```{r}
+nrow(Dolor_Nuevo)
+```
+
+```{r}
+which(is.na(Dolor))
+
+```
+
+```{r}
+str(Dolor_Nuevo)
+```
+
+```{r}
+df2<-Dolor_Nuevo[!(Dolor_Nuevo$Colesterol=="NA"),]
+df2
+```
+
+```{r}
+df2$Colesterol <- as.numeric(as.character(df2$Colesterol))  # Convert one variable to numeric
+
+```
+
+```{r}
+df2
+```
+
+```{r}
+log_simple <- glm(formula = `Estrechamiento arterias coronarias` ~ Colesterol,
+                  data = df2,
+                  family = "binomial")
+summary(log_simple)
+```
+
+```{r}
+nuevo_valor <- data.frame(Colesterol = c(199))
+prob <- log_simple %>% predict(nuevo_valor, type = "response")
+prob
+```
+
+```{r}
+log_simple_multi <- glm(formula = `Estrechamiento arterias coronarias` ~ Edad + `Días con síntomas` + Colesterol,
+                  data = df2,
+                  family = "binomial")
+summary(log_simple_multi)
+```
+
+No tiene significancia dias con sintoma. Los otros dos tienen una fuerte signficancia.
+
+```{r}
+
+Masculino <- df2 %>%
+  filter(Sexo == 0)
+
+Femenino <- df2 %>%
+  filter(Sexo == 1)
+```
+
+```{r}
+log_simple_multi_M <- glm(formula = `Estrechamiento arterias coronarias` ~ Edad + `Días con síntomas` + Colesterol,
+                  data = Masculino,
+                  family = "binomial")
+summary(log_simple_multi_M)
+```
+
+```{r}
+log_simple_multi_F <- glm(formula = `Estrechamiento arterias coronarias` ~ Edad + `Días con síntomas` + Colesterol,
+                  data = Femenino,
+                  family = "binomial")
+summary(log_simple_multi_F)
+```
+
+# Ejercicio N°3
+
+```{r, message=FALSE, warning=FALSE}
+Europa <- read_excel("Europa.xlsx")
+attach(Europa)
+
+```
+
+```{r}
+Europa
+```
+
+```{r}
+Países <- Europa %>%
+  dplyr::select(Área, PBI, Inflación, `Expectativa de vida`, `Población militar`, 
+                `Crecimiento de la población`, `Tasa de desempleo`)
+```
+
+```{r}
+Sigma_P = cov(Países)
+Sigma_P
+```
+
+```{r}
+Inv = det(Sigma_P)
+Inv
+```
+
+Como es distinta a 0 es inversible
+
+```{r}
+autovalores_p <- eigen(Sigma_P)$values
+autovalores_p
+```
+
+Creemos que area
+
+```{r}
+options(width = 80) # (mejora visual de la salida)
+
+PC_p <- prcomp(Países, scale = TRUE)
+PC_p$rotation
+```
+
+```{r}
+options(width = 80) # (mejora visual de la salida)
+
+summary(PC_p)
+
+```
+
+Grafico del codo
+
+Punto 5. Contribucion de variables-
+
+```{r}
+fviz_pca_var(PC_p, repel = TRUE,  
+             col.var = "contrib", # según la contribución
+             gradient.cols = "Set1",
+             title = "",
+             legend.title = "") 
+```
