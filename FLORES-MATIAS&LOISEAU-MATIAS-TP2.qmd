@@ -336,3 +336,216 @@ fviz_pca_var(PC_p, repel = TRUE,
              title = "",
              legend.title = "") 
 ```
+
+# Ejercicio N°4
+
+```{r, message=FALSE, warning=FALSE}
+data("JohnsonJohnson")
+
+```
+
+```{r}
+JohnsonJohnson
+```
+
+```{r}
+help("JohnsonJohnson")
+```
+
+El dataset contiene las ganancias en dolares trimestrales, desde el año 1960 hasta 1980.
+
+```{r}
+class(JohnsonJohnson)
+```
+
+```{r}
+length(JohnsonJohnson)
+```
+
+```{r}
+plot.ts(JohnsonJohnson, col ="royalblue", xlab = "Año", ylab = "Ganancias")
+```
+
+Descomposicion Aditiva
+
+```{r}
+ganancias_da <- decompose(JohnsonJohnson, type = "additive")
+```
+
+## 
+
+```{r}
+plot.ts(ganancias_da$trend, col = "purple", xlab = "Año", ylab = "Ganancias")
+```
+
+```{r}
+varR <- var(na.omit(ganancias_da$random))
+varTR <- var(na.omit(ganancias_da$trend) + na.omit(ganancias_da$random))
+1 - varR / varTR
+```
+
+Tiene una fuerte tendencia porque se desvía hacia arriba con un fuerza de 0.97, al parecer.
+
+```{r}
+plot.ts(ganancias_da$seasonal, col = "violet", xlab = "Año", ylab = "Ganancias")
+```
+
+```{r}
+varR <- var(na.omit(ganancias_da$random))
+varSR <- var(na.omit(ganancias_da$seasonal) + na.omit(ganancias_da$random))
+1 - varR / varSR
+```
+
+Se observa una debil estacionalidad. Tiene una fuerza de 0.32.
+
+AGREGAR MULTIPLICATIVA. SI PINTA AGREGAR LAG.
+
+BOXCOX
+
+```{r}
+lamb <- BoxCox.lambda(JohnsonJohnson)
+lamb
+```
+
+```{r}
+JohnBC <- BoxCox(JohnsonJohnson, lambda = lamb)
+```
+
+```{r}
+sto <- autoplot(JohnsonJohnson, color = "royalblue", main =  "Serie de tiempo original", xlab = "", ylab = "") +
+  theme_hc() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+stt <- autoplot(JohnBC, color = "purple", main =  "Serie de tiempo transformada", xlab = "", ylab = "") +
+  theme_hc() +
+  theme(plot.title = element_text(hjust = 0.5))
+
+grid.arrange(sto, stt, ncol = 1)
+```
+
+```{r}
+JohnBC
+```
+
+```{r}
+entrenamiento_john <- window(JohnBC, end = c(1960,76))
+prueba_john <- window(JohnBC, start = c(1977,9))
+prueba_john
+```
+
+```{r, message=FALSE, warning=FALSE}
+library(fpp2)
+PP.test(JohnBC)
+```
+
+```{El p valor resultante fue menor que 0.05, por lo cual determinamos que la transofrmada de box cox es estacionaria.}
+```
+
+```{r}
+Acf(JohnBC, lag.max = 14, type = "partial", main = "") 
+```
+
+Elegimos como p a 5, porque observamos que a partir del lag 5 los valores se van acercando signficativamente a 0.
+
+```{r}
+Acf(JohnBC, lag.max = 30, type = "correlation", main = "") 
+```
+
+```{r}
+JOHN_dif <- diff(JohnBC)
+autoplot(JOHN_dif, color = "royalblue", xlab = "Tiempo", ylab = "Precios diferenciados")
+```
+
+```{r}
+Acf(JOHN_dif, lag.max = 14, type = "partial", main = "") 
+```
+
+```{r}
+Acf(JOHN_dif, lag.max = 30, type = "correlation", main = "") 
+```
+
+```{r}
+JOHN_dif_2 <- diff(JOHN_dif)
+autoplot(JOHN_dif_2, color = "royalblue", xlab = "Tiempo", ylab = "Precios diferenciados")
+```
+
+```{r}
+Acf(JOHN_dif_2, lag.max = 14, type = "partial", main = "") 
+```
+
+```{r}
+Acf(JOHN_dif_2, lag.max = 30, type = "correlation", main = "") 
+```
+
+```{r}
+JOHN_dif_3 <- diff(JOHN_dif_2)
+```
+
+```{r}
+Acf(JOHN_dif_3, lag.max = 30, type = "correlation", main = "") 
+```
+
+```{r}
+JOHN_dif_3 <- diff(JOHN_dif_2)
+JOHN_dif_4 <- diff(JOHN_dif_3)
+JOHN_dif_5 <- diff(JOHN_dif_4)
+```
+
+```{r}
+Acf(JOHN_dif_5, lag.max = 30, type = "correlation", main = "") 
+```
+
+```{r}
+JOHN_dif_6 <- diff(JOHN_dif_5)
+JOHN_dif_7 <- diff(JOHN_dif_6)
+JOHN_dif_8 <- diff(JOHN_dif_7)
+```
+
+```{r}
+Acf(JOHN_dif_8, lag.max = 14, type = "partial", main = "") 
+```
+
+```{r}
+Acf(JOHN_dif_8, lag.max = 30, type = "correlation", main = "") 
+```
+
+eLEGIMOS Q=16 Y P=5
+
+```{r}
+kpss.test(JOHN_dif)
+```
+
+Vemos que haciendo la dif 1 nos da eestacionario.
+
+```{r}
+ARIMA <- arima(entrenamiento_john, order = c(16,3,5), method = "ML")
+round(summary(ARIMA)$coef, 4)
+```
+
+```{r}
+predARIMA <- forecast(ARIMA, h = 8)
+predARIMA
+```
+
+```{r}
+options(width = 80) # mejora la visual de la salida
+
+accuracy(predARIMA, prueba_john)
+```
+
+AUTOMATICO
+
+```{r}
+autoARIMA <- auto.arima(entrenamiento_john)
+summary(autoARIMA)
+```
+
+```{r}
+pred_autoARIMA <- forecast(autoARIMA, h = 8)
+```
+
+```{r}
+options(width = 80) # mejora la visual de la salida
+
+accuracy(pred_autoARIMA, prueba_john)
+```
