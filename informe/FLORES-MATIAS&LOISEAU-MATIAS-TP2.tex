@@ -1,0 +1,297 @@
+%% This is a semi-simple sample document.
+
+\documentclass{article} % \documentclass{} is the first command in any LaTeX code.  It is used to define what kind of document you are creating such as an article or a book, and begins the document preamble
+
+%\usepackage[spanish]{babel} % Para traducir palabras claves al español como "Figure" -> "Figura"
+
+\usepackage{amsmath, amssymb} % \usepackage is a command that allows you to add functionality to your LaTeX code
+
+\usepackage{mathtools} % using cases inside equations
+
+\usepackage{graphicx} % image package
+
+\usepackage{float} % Float specifiers are written in the square brackets whenever we use a float such as a figure or a table
+
+\usepackage{subcaption} % more than one picture s in the same figure
+
+\parskip 0.1in %paragraph distance
+
+\usepackage[margin=0.984252in]{geometry} %margin
+
+\usepackage[hidelinks]{hyperref} % Magic for index linking
+
+\usepackage{chngcntr} % For figure number matching with section number
+\counterwithin{figure}{section}
+
+\usepackage{appendix} % Appendix
+
+\usepackage{listings} % Para display codigo
+
+\usepackage{enumitem} % para enuimerar empezando por a, b, c
+
+\usepackage{listings} % para meter codigo
+
+\title{Trabajo Práctico N°2} % Sets article title
+\date{Septiembre 2023} % Sets article date
+
+\author{
+	\textbf{Fundamentos de Análisis de Datos}\\
+	Maestría en Ciencia de Datos\\
+	\\~\\
+	\textbf{Estudiantes: }\\
+	\textbf{Ing. Flores, Matías Gabriel}\\
+	matflores@itba.edu.ar
+ 	\\~\\
+ 	\textbf{Ing. Loiseau, Matías}\\
+ 	mloiseau@itba.edu.ar
+ 	\\~\\
+	\textbf{Docente: }\\
+	\textbf{Dra. Rey, Andrea A.}
+}
+
+% The preamble ends with the command \begin{document}
+\begin{document} % All begin commands must be paired with an end command somewhere
+
+\begin{figure}
+\centering
+	\includegraphics[width=0.2\textwidth]{images/itba-logo}
+	%\caption{Mi Figure}
+	\label{fig:itba-logo}
+\end{figure}
+\maketitle % creates title using information in preamble (title, author, date)
+
+\thispagestyle{empty} % Ignore page number
+\cleardoublepage
+
+\cleardoublepage
+\tableofcontents % general index
+\cleardoublepage
+
+
+\section{Ejercicio N° 1}
+
+Vamos a trabajar con el archivo \textit{MedidasCorporales.xlsx}.
+
+\subsection{Primer punto}
+
+\textbf{Consigna:} ¿Cuántos registros y cuántas variables tiene el conjunto de datos? ¿Todas las variables
+son numéricas?
+
+El set de datos de Medias Corporales tiene 507 registros y 24 variables. Verificamos que no haya nulos. Si, todas las variables son numéricas. Esto se puede apreciar en la tabla \ref{tab:table-punto-1-1}
+
+\begin{table}[H]
+	\centering
+		\begin{tabular}{||l | c ||}
+			\hline
+			\hline
+			 & Valor\\
+			\hline			
+			\hline
+			Registros & 507\\
+			\hline
+			Columnas & 24\\
+			\hline
+			Nulos & 0 \\
+			\hline
+			\hline
+		\end{tabular}
+		\caption{Cantidad de campos en el set de datos.}
+	\label{tab:table-punto-1-1}
+\end{table}
+
+
+\subsection{Segundo punto}
+
+\textbf{Consigna:} Regresión lineal simple: ¿cómo influye la altura en el peso?
+
+\begin{enumerate}[label=(\alph*)]
+\item Realizar una regresión lineal simple y escribir el modelo teórico resultante.
+\item ¿Cuáles son las estimaciones de la ordenada al origen y de la pendiente? ¿Son estos coeficientes de regresión significativos?
+\item Calcular el error estándar residual, el coeficiente de determinación R2 y su valor ajustado. ¿Qué se podría concluir sobre la bondad de ajuste del modelo?
+\end{enumerate}
+
+En primer lugar, creamos el modelo de regresión lineal simple y el resultado de la función es
+
+\begin{equation}
+\hat{y} = -105.011 + 1.018x
+\end{equation}
+
+donde $x$ representa la altura e $\hat{y}$ representa el peso estimada por el modelo.
+
+La estimación de la ordenada al origen es $-105.011$ y de la pendiente es $1.018$. Estos coeficientes de regresión tienen un alto grado de significancia según los resultados obtenidos.
+
+El error estándar residual nos determina que la estimación promedio del peso puede diferir en 9.308kg. Esto se puede observar en la Tabla \ref{tab:table-punto-1-2-c}. En cuanto al coeficiente de determinación $R^2$ consideramos que es significativamente moderado.
+
+\begin{table}[H]
+	\centering
+		\begin{tabular}{||l | c ||}
+			\hline
+			\hline
+			Variable & 	Valor\\
+			\hline			
+			\hline
+			Residuo & 9.308\\
+			\hline
+			$R^2$ & 0.5145\\
+			\hline
+			Valor ajustado & 0.5136 \\
+			\hline
+			Estadístico-F & 354.4 \\
+			\hline
+			P-Valor & $<2.2e^{-16}$ \\
+			\hline
+			\hline
+		\end{tabular}
+		\caption{Parámetros de salida del modelo.}
+	\label{tab:table-punto-1-2-c}
+\end{table}
+
+
+Concluimos que el 51\% de las variaciones de los pesos están explicadas por la altura de las personas. Además, podemos concluir que no existe una relación lineal entre la altura y el peso, ya que el estadístico-f observado tiene un valor alto con p-valor menor a $0.05$.
+
+\subsection{Tercer punto}
+
+\textbf{Consigna:} Regresión lineal múltiple: ¿cómo influyen las medidas consideradas en el peso?
+
+\begin{enumerate}[label=(\alph*)]
+\item Guardar en la variable n la cantidad total de registros.
+\item Fijar una semilla igual a 1234 y correr el siguiente comando:
+\begin{lstlisting}
+muestras <- 1:n %>%
+	createDataPartition(p=0.8,list=FALSE)
+\end{lstlisting}
+Usar la variable muestras para separar aleatoriamente el conjunto de registros en conjuntos de entrenamiento y de prueba. ¿Qué porcentaje de los datos integra cada uno de estos conjuntos?
+\item A partir del conjunto de entrenamiento, realizar el modelo de regresión lineal múltiple con todas las variables involucradas.
+\item A partir del conjunto de entrenamiento, realizar el modelo de regresión lineal múltiple con las variables que presenten un nivel de confianza de al menos el 95\%.
+\item Utilizando el conjunto de prueba, calcular el error cuadrático medio:
+$$
+MSE=\frac{1}{n}\sum^n_{i=1}(y_i-\hat{y}_i)^2
+$$
+donde n es la cantidad total de predicciones, $y_i$ es el valor real de la variable respuesta e $\hat{y}_i$ es el valor predicho. ¿Cuál de los dos modelos muestra un valor menor de MSE?
+\end{enumerate}
+
+El porcentaje de set de datos de entrenamiento es del 80\% y mientras que el de pruebas es del 20\%.
+
+A partir de los dos modelos realizados llevamos a cabo el calculo del error cuadrático medio para cada uno. Como resultado obtuvimos que los valores que se detallan en la tabla \ref{tab:table-punto-1-3}.
+
+
+\begin{table}[H]
+	\centering
+		\begin{tabular}{||l | c ||}
+			\hline
+			\hline
+			Modelo & MSE\\
+			\hline			
+			\hline
+			1 & 5.630\\
+			\hline
+			2 & 5.369\\
+			\hline
+			\hline
+		\end{tabular}
+		\caption{Errores cuadráticos medios.}
+	\label{tab:table-punto-1-3}
+\end{table}
+
+El modelo 2 es el que presenta un menor error cuadrático medio. Por lo tanto podemos concluir que es el modelo más eficiente.
+
+\section{Ejercicio N° 2}
+
+Vamos a trabajar con el archivo \textit{Dolor.xlsx}. El mismo contiene una muestra de 3504 pacientes que acudieron a un centro de salud presentando dolor en el pecho. Para estos pacientes, se recogieron diversas medidas. En el caso de las variables estrechamiento de arterias coronarias y de tres arterias coronarias, ambas son variables binarias que indican la presencia de estrechamiento en alguna de las arterias coronarias de al menos un 75\% (valor igual a 1) o no (valor igual a 0). En cuanto a la variable sexo, 0 corresponde a masculino y 1 a femenino.
+
+\subsection{Primer punto}
+
+\textbf{Consigna:} Realizar un modelo de regresión logística simple, que estudie la presencia de estrechamiento en alguna arteria coronaria explicada por el colesterol. Escribir la ecuación del modelo resultante y calcular la probabilidad de que una persona con un nivel de colesterol igual a 199 presente estrechamiento arterial.
+
+\begin{equation}
+p(x)=\frac{\exp(-0.7525280 + 0.0062268x)}{1 + \exp(-0.7525280 + 0.0062268x)}
+\end{equation}
+
+$p(199)=0.6193053$
+
+\subsection{Segundo punto}
+
+\textbf{Consigna:} Realizar un modelo de regresión logística múltiple, que estudie la presencia de estrechamiento en alguna arteria coronaria usando todas las variables no categóricas como variables explicativas. ¿Qué puede decirse sobre la significancia de las variables predictoras?
+
+Lo que podemos decir sobre las variables predictoras es que ´´días con síntomas´´ no tiene significacncia, mmientras que las variables de edad y colesterol tienen una fuerte significancia.
+
+\subsection{Tercer punto}
+
+\textbf{Consigna:} Replicar el modelo anterior pero diferenciando entre mujeres y varones. ¿Existen diferencias entre las significancias de las variables explicativas en función del sexo? Justificar la respuesta.
+
+
+
+\section{Ejercicio N° 3}
+
+Vamos a trabajar con el archivo Europa.xlsx.
+
+\subsection{Primer punto}
+
+\textbf{Consigna:} ¿Cuáles son las variables de interés?
+
+\subsection{Segundo punto}
+
+\textbf{Consigna:} Calcular la matriz de covarianza de los datos y analizar si es inversible.
+
+\subsection{Tercer punto}
+
+\textbf{Consigna:} ¿Cuál es el mayor autovalor de la matriz de covarianzas?
+
+\subsection{Cuarto punto}
+
+\textbf{Consigna:} Realizar un PCA y hallar la cantidad necesaria de componentes principales para explicar al menos el 90\% de la varianza total de los datos.
+
+\subsection{Quinto punto}
+
+\textbf{Consigna:} Realizar e interpretar un gráfico que visualice la contribución de las variables en las dos primeras componentes principales.
+
+\section{Ejercicio N° 4}
+
+Vamos a considerar el conjunto de datos JohnsonJohnson disponible en R.
+
+\subsection{Primer punto}
+
+\textbf{Consigna:} ¿Qué tipo de datos mide esta serie de tiempo? ¿Cuál es el período de tiempo analizado?
+
+El dataset contiene las ganancias en dolares trimestrales desde el año 1960 hasta 1980.
+
+\subsection{Segundo punto}
+
+\textbf{Consigna:} Graficar la serie tiempo, junto con sus descomposiciones aditiva y multiplicativa. ¿Se observa tendencia? ¿Se observa estacionalidad?
+
+ANALIZANDO GRAFICO ADITIVA 1 y CALCULANDO LA FUERZA DE LA TENDENCIA DA 0.97
+
+Efectivamente hay una fuerza a una tendencia
+
+ANALIZANDO LA ESTACIONALIDAD DE LA ADITIVA Y CALCULANDO LA FUERZA DE LA ESTACIONALIDAD 0.32
+
+Por lo que vemos es una estacionalidad aditiva debil.
+
+ANALIZANDO LA DESCOMP MULTIPLICATIVA 1 Y CALCULANDO LA FUERZA DE TENDENCIA NOS DA 0.99
+
+Efectivamente hay una fuerte tendencia
+
+ANALIZANDO LA DESCOMP MULTI 2 Y CALCULANDO LA FUERZA DE ESTACIONALIDAD NOS DA 0.54
+
+Hay un valor significativo bajo
+
+y por eso tenemos que aplicar la transofrmación box-cox
+
+\subsection{Tercer punto}
+
+\textbf{Consigna:} Analizar la conveniencia de aplicar la transformación de Box-Cox.
+
+es convenientge utilizarlo para estacionar los datos
+
+\subsection{Cuarto punto}
+
+\textbf{Consigna:} Usar toda la información de todos los años salvo los dos últimos para realizar un modelo ARIMA automático y uno personalizado, explicando la elección de los órdenes elegidos y teniendo en cuenta lo concluido en el punto anterior. Trabajar con  $1 \leq p \leq 14$ y $1 \leq q \leq 30$.
+
+\subsection{Quinto punto}
+
+\textbf{Consigna:} ¿Cuáles son los parámetros obtenidos para el modelo ARIMA automático?
+
+\subsection{Sexto punto}
+
+\textbf{Consigna:} Predecir las ganancias del último año utilizando los dos modelos ARIMA hallados. Calcular el criterio de información de Akaike (AIC) y el error de porcentaje medio absoluto (MAPE) en cada caso y decidir, en función de estos valores, qué modelo realiza las mejores predicciones.
+\end{document} % This is the end of the document
