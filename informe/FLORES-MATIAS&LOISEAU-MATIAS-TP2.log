@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.2)  14 SEP 2023 03:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.9.2)  14 SEP 2023 22:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -544,7 +544,81 @@ File: omlcmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 182.
  [6] [7] [8] [9] [10]
-(./FLORES-MATIAS&LOISEAU-MATIAS-TP2.aux)
+Overfull \hbox (23.38664pt too wide) in paragraph at lines 503--525
+ [][] 
+ []
+
+[11]
+<images/4-1 Serie Original.png, id=218, 526.96875pt x 325.5914pt>
+File: images/4-1 Serie Original.png Graphic file (type png)
+<use images/4-1 Serie Original.png>
+Package pdftex.def Info: images/4-1 Serie Original.png  used on input line 576.
+
+(pdftex.def)             Requested size: 377.6263pt x 233.32767pt.
+<images/4-2 Tendencia Aditiva.png, id=220, 526.96875pt x 325.5914pt>
+File: images/4-2 Tendencia Aditiva.png Graphic file (type png)
+<use images/4-2 Tendencia Aditiva.png>
+Package pdftex.def Info: images/4-2 Tendencia Aditiva.png  used on input line 5
+87.
+(pdftex.def)             Requested size: 377.6263pt x 233.32767pt.
+ [12 <./images/4-1 Serie Original.png>]
+<images/4-3 Estacionalidad Aditiva.png, id=229, 526.96875pt x 325.5914pt>
+File: images/4-3 Estacionalidad Aditiva.png Graphic file (type png)
+<use images/4-3 Estacionalidad Aditiva.png>
+Package pdftex.def Info: images/4-3 Estacionalidad Aditiva.png  used on input l
+ine 598.
+(pdftex.def)             Requested size: 377.6263pt x 233.32767pt.
+ [13 <./images/4-2 Tendencia Aditiva.png> <./images/4-3 Estacionalidad Aditiva.
+png>]
+<images/4-4 Tendencia Multiplicativa.png, id=239, 526.96875pt x 325.5914pt>
+File: images/4-4 Tendencia Multiplicativa.png Graphic file (type png)
+<use images/4-4 Tendencia Multiplicativa.png>
+Package pdftex.def Info: images/4-4 Tendencia Multiplicativa.png  used on input
+ line 609.
+(pdftex.def)             Requested size: 377.6263pt x 233.32767pt.
+<images/4-5 Estacionalidad Multiplicativa.png, id=241, 526.96875pt x 325.5914pt
+>
+File: images/4-5 Estacionalidad Multiplicativa.png Graphic file (type png)
+<use images/4-5 Estacionalidad Multiplicativa.png>
+Package pdftex.def Info: images/4-5 Estacionalidad Multiplicativa.png  used on 
+input line 620.
+(pdftex.def)             Requested size: 377.6263pt x 233.32767pt.
+ [14 <./images/4-4 Tendencia Multiplicativa.png> <./images/4-5 Estacionalidad M
+ultiplicativa.png>]
+<images/4-6 Transformada.png, id=251, 526.96875pt x 325.5914pt>
+File: images/4-6 Transformada.png Graphic file (type png)
+<use images/4-6 Transformada.png>
+Package pdftex.def Info: images/4-6 Transformada.png  used on input line 639.
+(pdftex.def)             Requested size: 377.6263pt x 233.32767pt.
+<images/4-7 Diferenciada.png, id=253, 526.96875pt x 325.215pt>
+File: images/4-7 Diferenciada.png Graphic file (type png)
+<use images/4-7 Diferenciada.png>
+Package pdftex.def Info: images/4-7 Diferenciada.png  used on input line 648.
+(pdftex.def)             Requested size: 377.6263pt x 233.05794pt.
+ [15 <./images/4-6 Transformada.png>]
+<images/4-8 PACF.png, id=263, 526.96875pt x 325.215pt>
+File: images/4-8 PACF.png Graphic file (type png)
+<use images/4-8 PACF.png>
+Package pdftex.def Info: images/4-8 PACF.png  used on input line 666.
+(pdftex.def)             Requested size: 377.6263pt x 233.05794pt.
+<images/4-9 ACF.png, id=264, 526.96875pt x 325.215pt>
+File: images/4-9 ACF.png Graphic file (type png)
+<use images/4-9 ACF.png>
+Package pdftex.def Info: images/4-9 ACF.png  used on input line 672.
+(pdftex.def)             Requested size: 377.6263pt x 233.05794pt.
+ [16 <./images/4-7 Diferenciada.png>]
+<images/4-10 AR.png, id=274, 526.96875pt x 325.215pt>
+File: images/4-10 AR.png Graphic file (type png)
+<use images/4-10 AR.png>
+Package pdftex.def Info: images/4-10 AR.png  used on input line 682.
+(pdftex.def)             Requested size: 377.6263pt x 233.05794pt.
+<images/4-11 MA.png, id=275, 526.96875pt x 325.215pt>
+File: images/4-11 MA.png Graphic file (type png)
+<use images/4-11 MA.png>
+Package pdftex.def Info: images/4-11 MA.png  used on input line 688.
+(pdftex.def)             Requested size: 377.6263pt x 233.05794pt.
+ [17 <./images/4-8 PACF.png> <./images/4-9 ACF.png>] [18 <./images/4-10 AR.png>
+ <./images/4-11 MA.png>] [19] (./FLORES-MATIAS&LOISEAU-MATIAS-TP2.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
@@ -554,13 +628,13 @@ t changed.
 (rerunfilecheck)             Checksum: D98FEE9F159631318AFD3F96474DF781;2555.
  ) 
 Here is how much of TeX's memory you used:
- 14377 strings out of 474934
- 223722 string characters out of 5763815
- 1934801 words of memory out of 5000000
- 35703 multiletter control sequences out of 15000+600000
+ 14545 strings out of 474934
+ 228551 string characters out of 5763815
+ 1944801 words of memory out of 5000000
+ 35843 multiletter control sequences out of 15000+600000
  567634 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,10n,79p,642b,1393s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,10n,79p,848b,1393s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/tex
 live/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2023
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2023/texmf-di
@@ -576,11 +650,11 @@ type1/public/cm-super/sfbx1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/publ
 ic/cm-super/sfbx1440.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-supe
 r/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728
 .pfb>
-Output written on FLORES-MATIAS&LOISEAU-MATIAS-TP2.pdf (10 pages, 232469 bytes)
+Output written on FLORES-MATIAS&LOISEAU-MATIAS-TP2.pdf (19 pages, 330406 bytes)
 .
 PDF statistics:
- 283 PDF objects out of 1000 (max. 8388607)
- 230 compressed objects within 3 object streams
- 52 named destinations out of 1000 (max. 500000)
- 184 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 387 PDF objects out of 1000 (max. 8388607)
+ 302 compressed objects within 4 object streams
+ 80 named destinations out of 1000 (max. 500000)
+ 239 words of extra memory for PDF output out of 10000 (max. 10000000)
 
