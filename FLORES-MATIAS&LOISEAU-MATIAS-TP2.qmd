@@ -35,7 +35,7 @@ MedidasCorporales <- read_excel("MedidasCorporales.xlsx")
 attach(MedidasCorporales)
 ```
 
-Ponemos esto para saber cuantos registros y variables hay. Y si son todas numericas
+Ponemos esto para saber cuantos registros y variables hay, y si son todas numéricas.
 
 ```{r}
 str(MedidasCorporales)
@@ -105,7 +105,7 @@ Analizamos la regresión
 summary(reg_lineal)
 ```
 
-Los coeficientes de regresion son muy significativos.
+Los coeficientes de regresión son muy significativos.
 
 ```{r}
 residuos <- data.frame(Error = reg_lineal$residuals)
@@ -150,7 +150,7 @@ entrenamiento_tp
 
 ## Modelo 1
 
-Aplicamos regresion multiple para analizar la influencia de todas las variables con Peso
+Aplicamos regresión múltiple para analizar la influencia de todas las variables con Peso
 
 ```{r}
 reg_multiple = lm(formula=Peso ~ ., data = entrenamiento_tp)
@@ -270,7 +270,7 @@ df2<-Dolor_Nuevo[!(Dolor_Nuevo$Colesterol=="NA"),]
 df2
 ```
 
-Convertimos a la variable Colesterol en numerica
+Convertimos a la variable Colesterol en numérica
 
 ```{r}
 df2$Colesterol <- as.numeric(as.character(df2$Colesterol))
@@ -281,7 +281,7 @@ df2$Colesterol <- as.numeric(as.character(df2$Colesterol))
 df2
 ```
 
-Modelo de Regresión Logistica
+Modelo de Regresión Logística
 
 ```{r}
 log_simple <- glm(formula = `Estrechamiento arterias coronarias` ~ Colesterol,
@@ -307,7 +307,7 @@ log_simple_multi <- glm(formula = `Estrechamiento arterias coronarias` ~ Edad + 
 summary(log_simple_multi)
 ```
 
-Determinamos que Días con Sintomas no tiene significancia en el modelo, mientras que Edad y Colesterol tienen una fuerte significancia.
+Determinamos que Días con Síntomas no tiene significancia en el modelo, mientras que Edad y Colesterol tienen una fuerte significancia.
 
 ## Punto 3
 
@@ -408,9 +408,9 @@ fviz_pca_var(PC_p, repel = TRUE,
 
 ```{r}
 # Usando las dos primeras componenes prncipales
-fviz_cos2(PC_p, choice = "var", axes = 1:2, fill = "pink", color = "violet") +
-  ggtitle("Calidad en la representación de las variables en las dimensiones 1-2") +
+fviz_cos2(PC_p, choice = "var", axes = 1:2, fill = "deepskyblue3", color = "black") +
   theme(plot.title = element_text(hjust = 0.5))
+
 ```
 
 # Ejercicio N°4
@@ -446,7 +446,7 @@ length(JohnsonJohnson)
 plot.ts(JohnsonJohnson, col ="royalblue", xlab = "Año", ylab = "Ganancias")
 ```
 
-### Descomposicion Aditiva
+### Descomposición Aditiva
 
 ```{r}
 ganancias_da <- decompose(JohnsonJohnson, type = "additive")
@@ -550,10 +550,6 @@ stt <- autoplot(JohnBC, color = "royalblue", main =  "Serie de tiempo transforma
 grid.arrange(sto, stt, ncol = 1)
 ```
 
-```{r}
-JohnBC
-```
-
 Dividimos en entrenamiento y prueba
 
 ```{r}
@@ -572,22 +568,26 @@ kpss.test(JohnBC)
 
 Determinamos que sigue sin ser estacionaria
 
-Aplicamos diferenciacion para eliminar la tendencia y estacionar.
+Aplicamos diferenciación para eliminar la tendencia y estacionar.
 
 ```{r}
 JOHN_dif <- diff(JohnBC)
 autoplot(JOHN_dif, color = "royalblue", xlab = "Año", ylab = "Ganancias diferenciadas")
 ```
 
+PACF
+
 ```{r}
 Acf(JOHN_dif, lag.max = 14, type = "partial", main = "") 
 ```
+
+ACF
 
 ```{r}
 Acf(JOHN_dif, lag.max = 30, type = "correlation", main = "") 
 ```
 
-Haciendo diff 1 nos da estacionario
+Determinamos p=5 y q=16 para nuestro ARIMA.
 
 ```{r}
 pp.test(JOHN_dif)
@@ -596,6 +596,8 @@ pp.test(JOHN_dif)
 ```{r}
 kpss.test(JOHN_dif)
 ```
+
+Haciendo diff 1 nos da estacionario
 
 ```{r}
 entrenamiento_john <- window(JohnBC, end = c(1960,76))
@@ -610,7 +612,7 @@ entrenamiento_john_diff <- diff(entrenamiento_john)
 prueba_john_diff <- diff(prueba_john)
 ```
 
-Mejor eleccion de p y justificacion
+Mejor elección de p y justificación. Aca utilizamos la diferenciada para encontrarlos.
 
 ```{r}
 options(width = 80) # mejora la visual de la salida
@@ -657,7 +659,7 @@ ggplot(AIC_MA, aes(x = Órden, y = AIC)) +
 ```
 
 ```{r}
-ARIMA <- arima(entrenamiento_john_diff, order = c(13,0,4), method = "ML")
+ARIMA <- arima(entrenamiento_john, order = c(4,1,13), method = "ML")
 round(summary(ARIMA)$coef, 4)
 ```
 
@@ -669,13 +671,13 @@ predARIMA
 ```{r}
 options(width = 80) # mejora la visual de la salida
 
-accuracy(predARIMA, prueba_john_diff)
+accuracy(predARIMA, prueba_john)
 ```
 
 AUTOMATICO
 
 ```{r}
-autoARIMA <- auto.arima(entrenamiento_john_diff)
+autoARIMA <- auto.arima(entrenamiento_john)
 summary(autoARIMA)
 ```
 
@@ -686,7 +688,7 @@ pred_autoARIMA <- forecast(autoARIMA, h = 8)
 ```{r}
 options(width = 80) # mejora la visual de la salida
 
-accuracy(pred_autoARIMA, prueba_john_diff)
+accuracy(pred_autoARIMA, prueba_john)
 ```
 
 ## Punto 6
@@ -700,7 +702,7 @@ summary(autoARIMA)
 ```
 
 ```{r}
-ARIMA_Nuestro <- arima(entrenamiento_john_diff, order = c(16,0,5), method = "ML")
+ARIMA_Nuestro <- arima(entrenamiento_john, order = c(5,1,16), method = "ML")
 round(summary(ARIMA_Nuestro)$coef, 4)
 ```
 
@@ -712,11 +714,7 @@ pred_ARIMANuestro
 ```{r}
 options(width = 80) # mejora la visual de la salida
 
-accuracy(pred_ARIMANuestro, prueba_john_diff)
-```
-
-```{r}
-summary(ARIMA_Nuestro)
+accuracy(pred_ARIMANuestro, prueba_john)
 ```
 
 Ultimo Año
@@ -725,15 +723,23 @@ Ultimo Año
 #entrenamiento_john_2 <- window(JohnBC, end = c(1960,76))
 prueba_john_2 <- window(JohnBC, start = c(1980,1))
 prueba_john_diff_2 <- diff(prueba_john_2)
-
+prueba_john_2
 ```
 
 ```{r}
+Modelo <- c("ARIMA(4,1,13)", "ARIMA(5,1,16)", "AutoARIMA")
 
-```
+AIC <- c(ARIMA$aic, ARIMA_Nuestro$aic, autoARIMA$aic)
 
-```{r}
-accuracy(predARIMA, prueba_john_diff_2)
-accuracy(pred_autoARIMA, prueba_john_diff_2)
-accuracy(pred_ARIMANuestro, prueba_john_diff_2)
+RMSE <- c(
+  accuracy(predARIMA, prueba_john)[2,2],
+  accuracy(pred_ARIMANuestro, prueba_john)[2,2],
+  accuracy(pred_autoARIMA, prueba_john)[2,2])
+
+MAPE <- c(
+    accuracy(predARIMA, prueba_john_2)[2,5],
+  accuracy(pred_ARIMANuestro, prueba_john_2)[2,5],
+  accuracy(pred_autoARIMA, prueba_john_2)[2,5])
+
+data.frame(Modelo = Modelo, AIC = AIC, RMSE = RMSE, MAPE = MAPE)
 ```

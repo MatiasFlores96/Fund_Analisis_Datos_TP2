@@ -77,7 +77,7 @@ Vamos a trabajar con el archivo \textit{MedidasCorporales.xlsx}.
 \textbf{Consigna:} ¿Cuántos registros y cuántas variables tiene el conjunto de datos? ¿Todas las variables
 son numéricas?
 
-El set de datos de Medias Corporales tiene 507 registros y 24 variables. Verificamos que no haya nulos. Esto se puede visualizar en la Tabla \ref{tab:table-punto-1-1}. Además, durante el análisis de los datos pudimos verificar que todas las variables son numéricas.
+El set de datos de Medias Corporales tiene 507 registros y 24 variables. Verificamos que no hubieran nulos. Esto se puede visualizar en la Tabla \ref{tab:table-punto-1-1}. Además, durante el análisis de los datos pudimos verificar que todas las variables son numéricas.
 
 \begin{table}[H]
 	\centering
@@ -169,7 +169,7 @@ El error estándar residual resultante determina que la estimación promedio del
 \end{table}
 
 
-A partir de los resultados obtenidos, determinamos que el 51\% de las variaciones de los pesos están explicadas por la altura de las personas. Además, podemos concluir que existe una relación lineal significativa entre la altura y el peso, ya que el estadístico-f observado tiene un valor alto con un p-valor menor a $0.05$, rechazando la hipótesis nula.
+A partir de los resultados obtenidos, determinamos que el 51\% de las variaciones de los pesos están explicadas por la altura de las personas. Además, podemos concluir que existe una relación lineal significativa entre la altura y el peso, ya que el Estadístico-F observado tiene un valor alto con un p-valor menor a $0.05$, rechazando la hipótesis nula.
 
 \subsection{Tercer punto}
 
@@ -194,7 +194,7 @@ donde n es la cantidad total de predicciones, $y_i$ es el valor real de la varia
 
 Para este ejercicio, en primer lugar, dividimos el dataset en un conjunto de entrenamiento y uno de prueba, mediante la semilla y el comando establecidos. Una vez realizado esto, el set de datos de entrenamiento resultante nos quedó con un 80\%  del data set original, mientras que el de prueba con un 20\%.
 
-Luego de haber separado el dataset, pasamos a realizar los modelos de regresión lineal multiple solicitados. En este caso, realizamos 2 modelos para ver que como influyen las variables en el peso. En el primer modelo utilizamos todas las variables del dataset, mientras que para el segundo utilizamos solo las variables que presentaran al menos un 95% de confianza. Para determinar estas variables, analizamos la confianza obtenida y procedimos a crear un nuevo modelo descartando las variables que no superaran ese porcentaje.
+Luego de haber separado el dataset, pasamos a realizar los modelos de regresión lineal multiple solicitados. En este caso, realizamos 2 modelos para ver que como influyen las variables en el peso. En el primer modelo utilizamos todas las variables del dataset, mientras que para el segundo utilizamos solo las variables que presentaran al menos un 95\% de confianza. Para determinar estas variables, analizamos la confianza obtenida y procedimos a crear un nuevo modelo descartando las variables que no superaran ese porcentaje.
 
 Al realizar el primer modelo, obtuvimos los coeficientes de regresión que se encuentran en la Tabla \ref{tab:table-punto-1-3-a}.
 
@@ -327,7 +327,7 @@ Luego, procedimos a analizar el nivel de confianza obtenido, que se encuentra de
 	\label{tab:table-punto-1-3-b}
 \end{table}
 
-A partir de estos valores, determinamos las variables que utilizaríamos en el modelo 2. A partir de la confianza calculada, tomamos en cuenta todos los valores que no pasaran por cero. Por lo tanto, las variables que utilizamos fueron "Profundidad de pecho", "Diámetro de rodilla", "Contorno de pecho", "Contorno de cintura", "Contorno de cadera", "Contorno de muslo", "Contorno de antebrazo", "Contorno de rodilla", "Contorno de pantorrilla", "Edad" y "Altura". Los coeficientes obtenidos para este modelo se encuentran en la siguiente Tabla \ref{tab:table-punto-1-3-c}.
+A partir de estos valores, determinamos las variables que utilizaríamos en el modelo 2. En base a la confianza calculada, tomamos en cuenta todos los valores que no pasaran por cero. Por lo tanto, las variables que utilizamos fueron "Profundidad de pecho", "Diámetro de rodilla", "Contorno de pecho", "Contorno de cintura", "Contorno de cadera", "Contorno de muslo", "Contorno de antebrazo", "Contorno de rodilla", "Contorno de pantorrilla", "Edad" y "Altura". Los coeficientes obtenidos para este modelo se encuentran en la siguiente Tabla \ref{tab:table-punto-1-3-c}.
 
 \begin{table}[H]
 	\centering
@@ -388,7 +388,7 @@ Finalmente, habiendo entrenado los dos modelos sobre el conjunto de entrenamient
 	\label{tab:table-punto-1-3-d}
 \end{table}
 
-A partir de los resultados obtenidos, podemos observar que el Estadístico F del modelo 2 tiene mas que el doble de tamaño que el del primer modelo, determinando que posee una mejor capacidad de explicar la variabilidad del peso en base a las variables involucradas. Los otros resultados dieron bastante similares para ambos, siendo el residuo levemente mas alto en el modelo 2. Por ultimo, el segundo modelo es el que presenta un menor error cuadrático medio, siendo el que tiene un mejor ajuste, y el mas eficiente de los dos.
+A partir de los resultados obtenidos, podemos observar que el Estadístico F del modelo 2 tiene mas que el doble de tamaño que el del primer modelo, determinando que posee una mejor capacidad de explicar la variabilidad del peso en base a las variables involucradas. Los otros resultados dieron bastante similares para ambos, siendo el residuo levemente mas alto en el modelo 2. Por ultimo, el segundo modelo es el que presenta un menor error cuadrático medio, siendo el que tiene un mejor ajuste a los datos, y el mas eficiente de los dos.
 
 \section{Ejercicio N° 2}
 
@@ -406,7 +406,7 @@ Para realizar el modelo de regresión logística simple, decidimos utilizar la v
 p(x)=\frac{\exp(-0.7525280 + 0.0062268x)}{1 + \exp(-0.7525280 + 0.0062268x)}
 \end{equation}
 
-Mediante el modelo implementado, pudimos calcular la probabilidad de que una persona con un nivel de colesterol de 199 presente estrechamiento arterial, siendo este un 61%. 
+Mediante el modelo implementado, pudimos calcular la probabilidad de que una persona con un nivel de colesterol de 199 presente estrechamiento arterial, siendo este un 61\%. 
 
 \begin{equation}
 p(199)=0.6193053
@@ -447,7 +447,7 @@ Mediante estos resultados, podemos ver que tanto "Edad" como "Colesterol", tiene
 
 \textbf{Consigna:} Replicar el modelo anterior pero diferenciando entre mujeres y varones. ¿Existen diferencias entre las significancias de las variables explicativas en función del sexo? Justificar la respuesta.
 
-Realizando el anterior modelo para mujeres y varones por separado, a simple vista, no parece tener un fuerte impacto en los valores obtenidos para cada uno. Los valores obtenidos para cada uno se encuentran en la Tabla \ref{tab:table-punto-2-3}.
+Realizando el anterior modelo para mujeres y varones por separado, a simple vista, no parece tener un fuerte impacto en los valores obtenidos para cada uno. Estos valores se encuentran en la Tabla \ref{tab:table-punto-2-3}.
 
 \begin{table}[H]
 	\centering
@@ -479,7 +479,7 @@ Realizando el anterior modelo para mujeres y varones por separado, a simple vist
 	\label{tab:table-punto-2-3}
 \end{table}
 
-Para el grupo de Mujeres, la variable de Días con Sintomas pareciera tener una mayor significancia, teniendo un p-valor cerca al 0.05, a diferencia del grupo de Hombres. Por otro lado, las otras variables parecen tener la misma significancia en ambos grupos. 
+Para el grupo de Mujeres, la variable de Días con Sintomas pareciera tener una mayor significancia, teniendo un p-valor cercano al 0.05, a diferencia del grupo de Hombres, en el cual no presenta significancia. Por otro lado, las otras variables parecen tener la misma significancia en ambos grupos. 
 
 
 \section{Ejercicio N° 3}
@@ -544,7 +544,24 @@ El resultado de la invarianza fue 1.235391e+19. Como dicho valor es distinto a 0
 
 \textbf{Consigna:} ¿Cuál es el mayor autovalor de la matriz de covarianzas?
 
-A partir de los autovalores obtenidos en la matriz de covarianzas, determinamos que el mayor autovalor es el de la variable ``Área''
+A partir de los autovalores obtenidos en la matriz de covarianzas, y realizando la funcion para obtenerlos, determinamos que el mayor autovalor es el primer autovalor, con un valor de $2.740712e+10$. Los autovalores obtenidos se encuentran en la Tabla \ref{tab:table-punto-3-3-2}.
+
+\begin{table}[H]
+	\centering
+		\begin{tabular}{||l || c | c | c | c | c | c | c ||}
+			\hline
+			\hline
+			Autovalor & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
+			\hline			
+			\hline
+			Valor &  2.74e+10 & 2.06e+08 & 1.61e+01 & 5.36e+00 & 7.77e-01 & 5.58e-01 & 5.81e-02\\
+			\hline
+			\hline
+		\end{tabular}
+		\caption{Autovalores.}
+		\label{tab:table-punto-3-3-2}
+\end{table}
+
 
 \subsection{Cuarto punto}
 
@@ -570,18 +587,18 @@ A partir de los autovalores obtenidos en la matriz de covarianzas, determinamos 
 		\label{tab:table-punto-3-4}
 \end{table}
 
-En base a los componentes principales calculados, y como se puede observar en la tabla \ref{tab:table-punto-3-4} determinamos que con 4 componentes podemos explicar un 89.25\% de la varianza total de los datos, llegando así casí un 90\% de ellos.
+En base a los componentes principales calculados, y como se puede observar en la Tabla \ref{tab:table-punto-3-4}, determinamos que con 4 componentes podemos explicar un 89.25\% de la varianza total de los datos, llegando así casi a un 90\% de ellos. Si bien el componente 4 no llega exactamente al 90\%, consideramos que es el adecuado, ya que el componente 5 supera el 95\%.
 
 \subsection{Quinto punto}
 
 \textbf{Consigna:} Realizar e interpretar un gráfico que visualice la contribución de las variables en las dos primeras componentes principales.
 
-Teniendo en cuenta las funciones realizadas en los puntos anteriores, procedemos a realizar un grafico para demostrar la contribución de las variables en las dos primeras componentes principales. 
+Teniendo en cuenta las funciones realizadas en los puntos anteriores, procedemos a realizar un gráfico para demostrar la contribución de las variables en las dos primeras componentes principales. 
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=1\textwidth]{images/3-5-1}
-	\caption{Representación y comparación de las direcciones de las variable en función de las dimensiones 1 y 2.}
+	\caption{Representación y Comparación de las Direcciones de las Variable en Función de las Dimensiones 1 y 2.}
 	\label{fig:falopa1}
 \end{figure} 
 
@@ -592,7 +609,10 @@ Teniendo en cuenta las funciones realizadas en los puntos anteriores, procedemos
 	\label{fig:falopa2}
 \end{figure} 
 
-En la figura \ref{fig:falopa1} observamos la calidad de representación de las variables y a su vez podemos comparar una con otras para ver que tan parecidas son entre ellas. En la otra figura \ref{fig:falopa2} representa la misma información a excepción de la dirección de las variables.
+En la Figura \ref{fig:falopa1} observamos la calidad de representación de las variables, y a su vez podemos comparar una con otras para ver que tan parecidas son entre ellas. Podemos determinar que las variables que se encuentran positivamente correlacionadas entre sí son el crecimiento de la población y la expectativa de vida, también la tasa de desempleo con la población militar, y por ultimo la inflación con el area. Ademas, podemos visualizar que el Área se encuentra poco representada en las primeras 2 componente principales. Finalmente, podemos deducir que las variables de inflación y expectativa de vida se encuentran correlacionadas negativamente.
+
+En la Figura \ref{fig:falopa2} se representa la misma información a excepción de la dirección de las variables. 
+
 
 \section{Ejercicio N° 4}
 
@@ -602,7 +622,7 @@ Vamos a considerar el conjunto de datos JohnsonJohnson disponible en R.
 
 \textbf{Consigna:} ¿Qué tipo de datos mide esta serie de tiempo? ¿Cuál es el período de tiempo analizado?
 
-Esta serie de tiempo contiene las ganancias en dolares trimestrales de "Johnson y Johnson", desde el año 1960 hasta 1980.
+Esta serie de tiempo contiene las ganancias en dolares trimestrales de ``Johnson y Johnson'', desde el año 1960 hasta 1980.
 
 \subsection{Segundo punto}
 
@@ -617,9 +637,9 @@ Lo primero que realizamos fue el gráfico de la serie de tiempo. Esta se puede v
 	\label{fig:SerieOriginal}
 \end{figure} 
 
-En este gráfico podemos visualizar un incremento en las ganancias a lo largo del tiempo. Para analizar la tendencia y la estacionalidad en detalle, vamos a realizar las descomposiciones aditiva y multiplicativa. 
+En este gráfico podemos visualizar un incremento en las ganancias a lo largo del tiempo. Para analizar la tendencia y la estacionalidad en detalle, realizamos las descomposiciones aditiva y multiplicativa. 
 
-Primero vamos a analizar la descomposición aditiva. La tendencia se puede visualizar en la Figura \ref{fig:TendenciaAditiva}.
+Primero analizamos la descomposición aditiva. La tendencia se puede visualizar en la Figura \ref{fig:TendenciaAditiva}.
 
 \begin{figure}[H]
 	\centering
@@ -628,7 +648,7 @@ Primero vamos a analizar la descomposición aditiva. La tendencia se puede visua
 	\label{fig:TendenciaAditiva}
 \end{figure} 
 
-A partir del gráfico, vemos que puede llegar a tener una tendencia positiva. Para saber con exactitud el valor de tendencia, realizamos el calculo de la fuerza de tendencia. Al realizar el calculo nos da como resultado un 0.97. Por lo que podemos determinar que existe una fuerte tendencia positiva.
+A partir del gráfico, vemos que puede llegar a tener una tendencia positiva. Para saber con exactitud el valor de tendencia, realizamos el calculo de la fuerza de tendencia. Al realizarlo, nos da como resultado un 0.97. Por lo que podemos determinar que existe una fuerte tendencia positiva.
 
 Lo siguiente que se analizó fue la estacionalidad, que se puede visualizar en la Figura \ref{fig:EstacionalidadAditiva}.
 
@@ -669,9 +689,9 @@ En base a los análisis realizados en este punto, podemos determinar que existe 
 
 \textbf{Consigna:} Analizar la conveniencia de aplicar la transformación de Box-Cox.
 
-Teniendo en cuenta el análisis realizado en el punto anterior, y revisando los residuos de las descomposiciones realizadas,vamos a proceder a verificar si es conveniente realizar una transformación de BoxCox sobre la serie de tiempo. Mediante esta transformación se estacionaría la serie de tiempo, lo cual nos va a ayudar a reducir la tendencia y estacionalidad que tiene actualmente, para más adelante poder realizar la implementación de un modelo ARIMA. 
+Teniendo en cuenta el análisis realizado en el punto anterior, y revisando los residuos de las descomposiciones realizadas, procedimos a verificar si es conveniente hacer una transformación de BoxCox sobre la serie de tiempo. Mediante esta transformación se estacionaría la serie de tiempo, lo cual nos va a ayudar a reducir la tendencia y estacionalidad que tiene actualmente, para más adelante poder realizar la implementación de un modelo ARIMA. 
 
-Lo primero que hicimos fue comprobar mediante los test de Phillips-Perron y de Kwiatkowski-Phillips-Schmidt-Shin si la serie de tiempo original es estacionaria. A partir de los resultados obtenidos, determinamos que no lo es, por lo cual procedemos a realizar la transformación de BoxCox. Para esto, realizamos la búsqueda del mejor parámetro $\lambda$. En nuestro caso, nos dio 0.15. Teniendo este valor, procedemos a realizar la transformación. En la Figura \ref{fig:Transformada} se puede ver la comparativa entre la serie original y la transformada.
+Lo primero que hicimos fue comprobar mediante los test de Phillips-Perron y de Kwiatkowski-Phillips-Schmidt-Shin si la serie de tiempo original es estacionaria. A partir de los resultados obtenidos, determinamos que no lo es, por lo cual procedemos a realizar la transformación de BoxCox. Para esto, realizamos la búsqueda del mejor parámetro $\lambda$. En nuestro caso, nos dio 0.15. Teniendo este valor, procedemos a llevar a cabo la transformación. En la Figura \ref{fig:Transformada} se puede ver la comparativa entre la serie original y la transformada.
 
 \begin{figure}[H]
 	\centering
@@ -680,7 +700,7 @@ Lo primero que hicimos fue comprobar mediante los test de Phillips-Perron y de K
 	\label{fig:Transformada}
 \end{figure} 
 
-Analizando los gráficos, vemos que pareciera haber una reducción en la tendencia y estacionalidad. Para comprobar si es estacionaria, realizamos nuevamente las pruebas anteriormente mencionadas. Una vez hecho esto, obtenemos que sigue sin ser estacionaria. Por lo cual decidimos realizar una diferenciación sobre ella para eliminar la tendencia que queda. El resultado de esto se puede apreciar en la Figura \ref{fig:Diferenciada}. 
+Analizando los gráficos, vemos que pareciera haber una reducción en la tendencia y estacionalidad. Para comprobar si es estacionaria, realizamos nuevamente las pruebas anteriormente mencionadas. Una vez hecho esto, obtuvimos que sigue sin ser estacionaria. Por lo cual decidimos realizar una diferenciación sobre ella para eliminar la tendencia que queda. El resultado de esto se puede apreciar en la Figura \ref{fig:Diferenciada}. 
 
 \begin{figure}[H]
 	\centering
@@ -696,7 +716,7 @@ Realizamos devuelta los test de Phillips-Perron y de Kwiatkowski-Phillips-Schmid
 
 \textbf{Consigna:} Usar toda la información de todos los años salvo los dos últimos para realizar un modelo ARIMA automático y uno personalizado, explicando la elección de los órdenes elegidos y teniendo en cuenta lo concluido en el punto anterior. Trabajar con  $1 \leq p \leq 14$ y $1 \leq q \leq 30$.
 
-Teniendo en cuenta los resultados obtenidos anteriormente, trabajamos con la serie transformada y diferenciada. Lo primero que hicimos fue realizar el modelo de ARIMA personalizado. Para esto, dividimos el la serie diferenciada en dos conjuntos, uno de entrenamiento con los datos de los años 1960 a 1978, y otro de prueba solamente con el ultimo año (1980) para lo que se solicita en el sexto punto. 
+Teniendo en cuenta los resultados obtenidos anteriormente, trabajamos con la serie transformada y diferenciada. Lo primero que hicimos fue realizar el modelo de ARIMA personalizado. Para esto, dividimos la serie diferenciada en dos conjuntos, uno de entrenamiento con los datos de los años 1960 a 1978, y otro de prueba solamente con el ultimo año (1980) para lo que se solicita en el sexto punto. 
 
 A partir de esta división, procedimos a determinar el mejor valor de p y q para utilizar en la implementación del modelo. Realizamos los gráficos para la función de autocorrelación parcial (PACF), mediante el cual podemos observar el p con menor valor; y el de la función de autocorrelación(ACF), para determinar el q menor. Estos gráficos se pueden visualizar en la Figura \ref{fig:PACF} y Figura \ref{fig:ACF}, respectivamente. 
 
@@ -736,7 +756,7 @@ Estos modelos nos dieron resultados diferentes a los que habíamos determinado p
 
 \textbf{Consigna:} ¿Cuáles son los parámetros obtenidos para el modelo ARIMA automático?
 
-Al implementar el modelo ARIMA automático, obtuvimos la siguiente salida: ARIMA(0,0,1)(0,1,1)[4]. En base a esto, podemos determinar que el ARIMA automático encontró dos conjuntos de parámetros con los que pudo obtener los mejores resultados. Para el primer conjunto tiene p=0, d=0 y q=1, mientras que para el segundo tiene p=0, d=1 y q=1.
+Al implementar el modelo ARIMA automático, obtuvimos la siguiente salida: ARIMA(0,1,1)(0,1,1)[4]. En base a esto, podemos determinar que el ARIMA automático encontró como parámetros para obtener los mejores resultados a p=0, d=1 y q=1.
 
 
 \subsection{Sexto punto}
@@ -753,11 +773,11 @@ Realizando la implementación de los dos modelos personalizados y el modelo auto
 			Modelo & AIC & RMSE & MAPE\\
 			\hline			
 			\hline
-			ARIMA(13,0,4) & -99.11 & 0.184 & 102.6 \\
+			ARIMA(4,1,13) & -94.85 & 0.125 & 3.60 \\
 			\hline
-			ARIMA(16,0,5)  & -98.76 & 0.144 & 80.04 \\
+			ARIMA(5,1,16)  & -88.83 & 0.112 & 2.63 \\
 			\hline
-			ARIMA Automático & -113.36 & 0.172 & 95.7 \\
+			ARIMA Automático & -113.36 & 0.099 & 2.63 \\
 			\hline
 			\hline
 		\end{tabular}
@@ -765,6 +785,6 @@ Realizando la implementación de los dos modelos personalizados y el modelo auto
 	\label{tab:table-punto-4-1}
 \end{table}
 
-Teniendo en cuenta los resultados obtenidos para cada modelo, vemos que el modelo de ARIMA personalizado con los parámetros determinados por las funciones de AR Y MA, nos generó el peor valor de RMSE Y MAPE, siendo valores mucho mas grandes que los otros dos modelos. A pesar de esto, el valor de AIC que obtuvo no es significativamente malo en comparación con el automático, quien obtuvo el peor rendimiento en esa medida, mientras que para las otras dos obtuvo un resultado mas bajo de error en comparación al primero. Por ultimo, el que mejor resultados obtuvo para las 3 métricas fue el modelo ARIMA personalizado con los parámetros que visualizamos en los gráficos de PACF y ACF. Por lo tanto, podemos concluir que el modelo que mejor se ajusta a los datos es el ARIMA(13,0,4).
+Teniendo en cuenta los resultados obtenidos para cada modelo, vemos que el modelo de ARIMA personalizado con los parámetros determinados por las funciones de AR Y MA (4,1,13), nos generó el peor valor de RMSE Y MAPE, siendo valores mas grandes que los otros dos modelos. A pesar de esto, el valor de AIC que obtuvo es mejor en comparación con el de ARIMA(5,1,16), quien obtuvo el peor rendimiento en esa medida, mientras que para las otras dos obtuvo un resultado mejor de error en comparación al primero. Por ultimo, el que mejor resultados obtuvo para las 3 métricas fue el modelo ARIMA Automático. Por lo tanto, podemos concluir que el modelo mas eficiente y que mejor se ajusta a los datos es el ARIMA Automático.
 
 \end{document} % This is the end of the document
