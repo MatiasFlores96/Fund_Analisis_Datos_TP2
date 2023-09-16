@@ -10,12 +10,12 @@
 \contentsline {subsection}{\numberline {3.1}Primer punto}{11}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Segundo punto}{11}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Tercer punto}{11}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Cuarto punto}{11}{subsection.3.4}%
-\contentsline {subsection}{\numberline {3.5}Quinto punto}{11}{subsection.3.5}%
-\contentsline {section}{\numberline {4}Ejercicio N° 4}{12}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Primer punto}{12}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Segundo punto}{12}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Tercer punto}{15}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Cuarto punto}{16}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Quinto punto}{19}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Sexto punto}{19}{subsection.4.6}%
+\contentsline {subsection}{\numberline {3.4}Cuarto punto}{12}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Quinto punto}{12}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Ejercicio N° 4}{13}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Primer punto}{13}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Segundo punto}{13}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Tercer punto}{16}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Cuarto punto}{18}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Quinto punto}{20}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Sexto punto}{20}{subsection.4.6}%

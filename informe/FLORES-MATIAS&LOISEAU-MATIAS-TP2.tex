@@ -490,35 +490,47 @@ Vamos a trabajar con el archivo Europa.xlsx.
 
 \textbf{Consigna:} ¿Cuáles son las variables de interés?
 
-Mati?
+Las variables de interés del set de datos \textit{Europa} son:
+
+\begin{itemize}
+\item Área	
+\item PBI	
+\item Inflación	
+\item Expectativa de vida	
+\item Población militar	
+\item Crecimiento de la población	
+\item Tasa de desempleo
+\end{itemize}
+
+Hay que tener en cuanta que en el mismo archivo se encuentra el campo País, pero este sirve como índice y no como variable.
 
 \subsection{Segundo punto}
 
 \textbf{Consigna:} Calcular la matriz de covarianza de los datos y analizar si es inversible.
 
-Primero realizamos la matriz de covarianzas y luego aplicamos la función para determinar si era inversible. La matriz se encuentra en la Tabla \ref{tab:table-punto-3-3}, donde 1 es 'Área', 2 es 'PBI', 3 es 'Inflación', 4 es 'Expectativa de Vida', 5 es 'Población Militar', 6 es 'Crecimiento de Población' y 7 es 'Tasa de Desempleo'. FALTA LLENAR CON LOS VALORES VERDADEROS.
+Primero realizamos la matriz de covarianzas y luego aplicamos la función para determinar si era inversible. La matriz se encuentra en la Tabla \ref{tab:table-punto-3-3}, donde 1 es ``Área'', 2 es ``PBI'', 3 es ``Inflación'', 4 es ``Expectativa de Vida'', 5 es ``Población Militar'', 6 es ``Crecimiento de Población'' y 7 es ``Tasa de Desempleo''.
 
 \begin{table}[H]
 	\centering
-		\begin{tabular}{||l || c | c | c | c | c | c | c | c ||}
+		\begin{tabular}{||l || c | c | c | c | c | c | c ||}
 			\hline
 			\hline
-			Variable & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
+			 & 1 & 2 & 3 & 4 & 5 & 6 & 7\\
 			\hline			
 			\hline
-			1 & $2.740305e+10$ & $-3.325321e+08$ & $3.15e^{2}$& $-3.49e^{1}$ & $-8.87e^{1}$ & $-8.02e^{1}$ & $-9.63e^{1}$ & $-2.22e^{8}$\\
+			1& 2.74e+10& -3.32e+08 & 7.40e+04 &-1.14e+04&      1.34e+04& -7363.91&      19707.05\\
 			\hline
-			2 & $2.31e^{1}$ & $2.27e^{1}$ & $1.08e^{2}$& $6.55e^{-1}$ & $-4.05e^{1}$ & $-3.95e^{1}$ & $-4.25e^{1}$ & $-6.80e^{7}$\\
+			2& -3.32e+08&  2.10e+08 &-9.99e+03 &3.24e+04&     -3.30e+03& 5535.55 &    -35802.46\\
 			\hline
-			3 & $3.15e^{2}$ & $1.08e^{2}$ & $1.25e^{3}$& $-1.02e^{2}$ & $-3.31e^{2}$ & $-3.04e^{2}$ & $-3.58e^{2}$ & $-3.75e^{8}$\\
+			3 &7.40e+04 &-9.99e+03  &1.95e+00 &-3.02e+00&      5.41e-02& -0.33   &       1.30\\
 			\hline
-			4 & $-3.49e^{1}$ & $6.55e^{-1}$ & $-1.02e^{2}$& $2.40e^{1}$ & $3.06e^{1}$ & $2.63e^{1}$ & $3.38e^{1}$ & $2.65e^{7}$\\
+			4 &-1.14e+04&  3.24e+04 &-3.02e+00& 1.01e+01&     -1.61e-01& 1.23    &     -3.66\\
 			\hline
-			5 & $-8.87e^{1}$ & $-4.05e^{1}$ & $-3.31e^{2}$& $3.06e^{1}$ & $1.17e^{2}$ & $1.09e^{2}$ & $1.25e^{2}$ & $1.582e^{8}$\\
+			5 &1.34e+04& -3.30e+03  &5.41e-02& -1.61e-01&      6.42e-01& -0.11   &       1.09\\
 			\hline
-			6 & $-8.02e^{1}$ & $-3.95e^{1}$ & $-3.04e^{2}$& $2.63e^{1}$ & $1.09e^{2}$ & $1.04e^{2}$ & $1.16e^{2}$ & $1.63e^{8}$\\
+			6 &-7.36e+03&  5.53e+03 &-3.36e-01& 1.23e+00&     -1.13e-01& 0.25    &     -0.41\\
 			\hline
-			7 & $-8.02e^{1}$ & $-3.95e^{1}$ & $-3.04e^{2}$& $2.63e^{1}$ & $1.09e^{2}$ & $1.04e^{2}$ & $1.16e^{2}$ & $1.63e^{8}$\\
+			7 &1.97e+04& -3.58e+04  &1.30e+00 &-3.66e+00&      1.09e+00& -0.41   &      21.88\\			
 			\hline
 			\hline
 		\end{tabular}
@@ -532,16 +544,33 @@ El resultado de la invarianza fue 1.235391e+19. Como dicho valor es distinto a 0
 
 \textbf{Consigna:} ¿Cuál es el mayor autovalor de la matriz de covarianzas?
 
-A partir de los autovalores obtenidos en la matriz de covarianzas, determinamos que el mayor autovalor es el de la variable "Área"
+A partir de los autovalores obtenidos en la matriz de covarianzas, determinamos que el mayor autovalor es el de la variable ``Área''
 
 \subsection{Cuarto punto}
 
 \textbf{Consigna:} Realizar un PCA y hallar la cantidad necesaria de componentes principales para explicar al menos el 90\% de la varianza total de los datos.
 
-ACA VA LA TABLA CON LOS PC. FALTA PONER.
+\begin{table}[H]
+	\centering
+		\begin{tabular}{||l || c | c | c | c | c | c | c ||}
+			\hline
+			\hline
+			Variable Descriptiva & PC1 & PC2 & PC3 & PC4 & PC5 & PC6 & PC7\\
+			\hline			
+			\hline
+			Standard deviation  &   1.796 &1.0896& 1.0311& 0.8777& 0.67665 &0.4107 &0.35446\\
+			\hline
+			Proportion of Variance &0.461 &0.1696 &0.1519 &0.1100 &0.06541 &0.0241& 0.01795\\
+			\hline			
+			Cumulative Proportion  &0.461 &0.6306 &0.7825 &0.8925 &0.95795 &0.9820 &1.00000\\
+			\hline
+			\hline
+		\end{tabular}
+		\caption{Variables descriptivas de los componentes principales.}
+		\label{tab:table-punto-3-4}
+\end{table}
 
-
-En base a los componentes principales calculados, determinamos que con 4 componentes podemos explicar un 89.25% de la varianza total de los datos, llegando así casí un 90% de ellos.
+En base a los componentes principales calculados, y como se puede observar en la tabla \ref{tab:table-punto-3-4} determinamos que con 4 componentes podemos explicar un 89.25\% de la varianza total de los datos, llegando así casí un 90\% de ellos.
 
 \subsection{Quinto punto}
 
@@ -549,11 +578,21 @@ En base a los componentes principales calculados, determinamos que con 4 compone
 
 Teniendo en cuenta las funciones realizadas en los puntos anteriores, procedemos a realizar un grafico para demostrar la contribución de las variables en las dos primeras componentes principales. 
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/3-5-1}
+	\caption{Representación y comparación de las direcciones de las variable en función de las dimensiones 1 y 2.}
+	\label{fig:falopa1}
+\end{figure} 
 
-Figura del grafico.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1\textwidth]{images/3-5-2}
+	\caption{Calidad de la representación de las dimensiones 1 y 2.}
+	\label{fig:falopa2}
+\end{figure} 
 
-
-Pregunta para Mati... 2 primeras componentes?????
+En la figura \ref{fig:falopa1} observamos la calidad de representación de las variables y a su vez podemos comparar una con otras para ver que tan parecidas son entre ellas. En la otra figura \ref{fig:falopa2} representa la misma información a excepción de la dirección de las variables.
 
 \section{Ejercicio N° 4}
 
